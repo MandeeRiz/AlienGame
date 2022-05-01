@@ -118,30 +118,17 @@ const startBattle = () => {
         //user attack function runs
         console.log("You Attacked")
         shootAnimation();
-        const cIsHit = () => {
-            if(Math.random() < userShip.accuracy){
-                console.log("You hit the alien ship!");
-                compShip1.hull -= userShip.firepower;
-                if(compShip1.hull <= 0){
-                    console.log("You destoyed the alien ship!");
-                    let alien = document.querySelector(".evilShip")
-                    alien.classList.toggle("none")
-                }
-            } else {
-                console.log("You missed!");
-            }
-        }
-        cIsHit();
+        cIsHit(compShip1);
     } else if(userMove === "R"){
         //run game over function "you lose"
         console.log("you lose")
         alert("You Lose!")
-    } else{
+    } else {
         console.log("error, choose A or R.")
     }
     //aliens turn
-    let alienMove = alert("Alien ship is attacking!");
     if(compShip1.hull > 0){ 
+        let alienMove = alert("Alien ship is attacking!")
         uIsHit(compShip1);
         console.log(`Your hull stands at ${userShip.hull}`);
     } else if (compShip1.hull <= 0){
@@ -169,22 +156,35 @@ boom.classList.toggle("boomtoggle");
 
 ///////////////////////////////////////////////////////////////////
 
-//calculates if alien ship will be hit by your shot
-const cIsHit = () => {
-    if(Math.random() < userShip.accuracy){
-        console.log("You hit the alien ship!")
-    } else {
-        console.log("You missed!");
-    }
-}
-//calculates only if alien ship 1 will hit the user!
+
+
+//calculates if alien ship will hit the user!
 const uIsHit = (compShip) => {
-    if (Math.random() <= compShip.accuracy){
+    let randomNumber = Math.random();
+    if (randomNumber <= compShip.accuracy){
         console.log("You have been hit!")
         userShip.hull -= compShip.firepower
-    } else if (Math.random() > compShip.accuracy){
+    } else if (randomNumber > compShip.accuracy){
         console.log("The alien missed!")
     } else {
         console.log("error")
+    }
+}
+
+//calculates if alien ship will be hit by your shot
+
+const cIsHit = (compShip) => {
+    let randomNumber = Math.random();
+    if(randomNumber <= userShip.accuracy){
+        console.log("You hit the alien ship!");
+        compShip.hull -= userShip.firepower;
+        if(compShip.hull <= 0){
+            console.log("You destoyed the alien ship!");
+            let alien = document.querySelector(".evilShip")
+            alien.classList.toggle("none")
+        }
+    } else {
+        console.log("You missed!");
+        //aline attacks
     }
 }
