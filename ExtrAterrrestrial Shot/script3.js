@@ -108,17 +108,17 @@ let userShip = {
     //==========================================
      //everything that happens in the game happens in the event listener
     const startButton = document.querySelector(".start")
-    
+    let boom = document.querySelector(".boom")
     
     //start of battle
-   /* 
-    const startBattle = () => {
+    
+    const startBattle = (compShip) => {
        let userMove = prompt("[A]ttack or [R]etreat", "Input A or R");
         if(userMove === "A"){ 
             //user attack function runs
             console.log("You Attacked")
             shootAnimation();
-            cIsHit(compShip1);
+            cIsHit(compShip);
         } else if(userMove === "R"){
             //run game over function "you lose"
             console.log("you lose")
@@ -127,22 +127,22 @@ let userShip = {
             console.log("error, choose A or R.")
         }
         //aliens turn
-        if(compShip1.hull > 0){ 
+        if(compShip.hull > 0){ 
             let alienMove = alert("Alien ship is attacking!")
-            uIsHit(compShip1);
+            uIsHit(compShip);
             console.log(`Your hull stands at ${userShip.hull}`);
-        } else if (compShip1.hull <= 0){
+        } else if (compShip.hull <= 0){
             console.log("onto the next alien ship");
         }
     }
-    */
-   
+    
+    // click start Game to start the game
+    startButton.addEventListener("click", startBattle(compShip1))
        
     //////////////////////////////////////////////////////////////////////////
     
     //shoot animation
-
-    let boom = document.querySelector(".boom")
+    
     const shootAnimation = () =>{
     boom.classList.toggle("boomtoggle");
         }
@@ -180,67 +180,11 @@ let userShip = {
             compShip.hull -= userShip.firepower;
             if(compShip.hull <= 0){
                 console.log("You destoyed the alien ship!");
-                let alien1 = document.querySelector(".evilShip1")
-                if(compShip === compShip1){
-                    alien1.classList.toggle("none");
-                } else if (compShip === compShip2){
-                   let alien2 = document.querySelector(".evilShip2");
-                    alien2.classList.toggle("none");
-                } else if (compShip === compShip3){
-                    let alien3 = document.querySelector(".evilShip3");
-                     alien3.classList.toggle("none");
-                } else if (compShip === compShip4){
-                    let alien4 = document.querySelector(".evilShip4");
-                     alien4.classList.toggle("none");
-                } else if (compShip === compShip5){
-                    let alien5 = document.querySelector(".evilShip5");
-                     alien5.classList.toggle("none");
-                } else if (compShip === compShip6){
-                    let alien6 = document.querySelector(".evilShip6");
-                     alien6.classList.toggle("none");
-                }
+                let alien = document.querySelector(".evilShip")
+                alien.classList.toggle("none")
             }
         } else {
             console.log("You missed!");
             //aline attacks
         }
     }
-   
-///////////////////////////////////////////////
-const startBattle = (compShipPlaceHolder) => {
-    let userMove = prompt("[A]ttack or [R]etreat", "Input A or R");
-     if(userMove === "A"){ 
-         //user attack function runs
-         console.log("You Attacked")
-         shootAnimation();
-         cIsHit(compShipPlaceHolder);
-     } else if(userMove === "R"){
-         //run game over function "you lose"
-         console.log("you lose")
-         alert("You Lose! reset page to try again")
-     } else {
-         console.log("error, choose A or R.")
-     }
-     //aliens turn
-     if(compShipPlaceHolder.hull > 0){ 
-         let alienMove = alert("Alien ship is attacking!")
-         uIsHit(compShipPlaceHolder);
-         console.log(`Your hull stands at ${userShip.hull}`);
-         startBattle(compShipPlaceHolder);
-     } else if (compShipPlaceHolder.hull <= 0){
-         console.log("onto the next alien ship");
-     }
- }
-
-  // click start Game to start the game
-  startButton.addEventListener("click", function(){
-      startBattle(compShip1);
-      startBattle(compShip2);
-      startBattle(compShip3);
-      startBattle(compShip4);
-      startBattle(compShip5);
-      startBattle(compShip6);
-      console.log("You have completed the game! Winner!")
-  })
-
-  //startBattle(nextComShip, compShip3);
