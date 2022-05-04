@@ -48,9 +48,24 @@
     z-index: 1;
     position: absolute;
 }
-.evilShip{
-    height:5vh;
+.evilShip1{
+    width:5vh;
 
+}
+.evilShip2{
+    width:5vh;
+}
+.evilShip3{
+    width:5vh;
+}
+.evilShip4{
+    width:5vh;
+}
+.evilShip5{
+    width:5vh;
+}
+.evilShip6{
+    width:5vh;
 }
 .computerholder{
     width:40px;
